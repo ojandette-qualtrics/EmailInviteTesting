@@ -22,7 +22,7 @@
     
     <style type="text/css">
         /* CSS Reset for Email Clients */
-        body {
+   body {
             margin: 0 !important;
             padding: 0 !important;
             -webkit-text-size-adjust: 100% !important;
@@ -69,13 +69,12 @@
             border: 0 !important;
         }
         
-        /* Fieldset Styling - Mimics native fieldset appearance */
+        /* Fieldset Styling - NO VISIBLE BORDER */
         .fieldset-container {
-            border: 1px solid #cccccc !important;
-            border-radius: 4px !important;
-            padding: 20px 15px 15px 15px !important;
-            margin: 15px 0 !important;
-            position: relative !important;
+            border: 0 !important;
+            padding: 0 !important;
+            margin: 0 !important;
+            min-width: 0 !important;
         }
         
         .fieldset-legend {
@@ -84,24 +83,25 @@
             font-weight: bold !important;
             color: #001f45 !important;
             line-height: 1.4 !important;
-            margin: 0 0 15px 0 !important;
-            padding: 0 5px !important;
+            margin: 0 0 7.5pt 0 !important;
+            padding: 0 !important;
             display: block !important;
         }
         
-        .fieldset-container {
-            border: 0 !important;
-            padding: 0 !important;
-            margin: 0 !important;
+        /* Rating Scale Styles - Desktop */
+        .rating-table {
+            background-color: #001f45 !important;
+            border-collapse: collapse !important;
+            width: 100% !important;
         }
         
-        /* Rating Scale Styles - Maintains original appearance */
         .rating-cell {
             background: #001f45 !important;
-            border: 1pt solid #ffffff !important;
+            border: 1pt inset #ffffff !important;
             padding: 0 !important;
             width: 9% !important;
-            height: 30pt !important;
+            height: 40px !important;
+            min-height: 40px !important;
         }
         
         .rating-link {
@@ -112,38 +112,152 @@
             font-weight: bold !important;
             text-decoration: none !important;
             text-align: center !important;
-            line-height: 30pt !important;
+            line-height: 40px !important;
             padding: 0 !important;
+            min-height: 44px !important; /* WCAG 2.5.8 minimum touch target */
         }
         
-        /* Ensure white text on dark background meets contrast - WCAG 1.4.3 */
         .rating-link:visited {
             color: #ffffff !important;
         }
         
-        /* Remove border for Outlook which doesn't support it well */
-        .fieldset-container-outlook {
-            padding: 15px !important;
+        /* Container reflow */
+        .email-container {
+            width: 100% !important;
+            max-width: 600px !important;
         }
         
-        /* Mobile Responsive */
+        /* REFLOW COMPLIANCE - WCAG 1.4.10 */
+        /* Mobile devices and narrow viewports */
         @media only screen and (max-width: 600px) {
-            .container {
+            /* Force full width */
+            .email-container {
                 width: 100% !important;
                 max-width: 100% !important;
             }
             
+            /* Responsive padding */
             .mobile-padding {
                 padding-left: 10px !important;
                 padding-right: 10px !important;
             }
             
-            .rating-cell {
-                font-size: 9pt !important;
+            /* Scale image responsively */
+            .responsive-image {
+                width: 100% !important;
+                height: auto !important;
+                max-width: 100% !important;
             }
             
-            .fieldset-container {
-                padding: 15px 10px 10px 10px !important;
+            /* Adjust typography for readability */
+            .fieldset-legend {
+                font-size: 14pt !important;
+            }
+            
+            body {
+                font-size: 14px !important;
+            }
+        }
+        
+        /* CRITICAL: Reflow for 320px viewport - WCAG 1.4.10 */
+        @media only screen and (max-width: 480px) {
+            
+            /* Stack rating scale into two rows */
+            .rating-table-wrapper {
+                overflow-x: visible !important;
+            }
+            
+            .rating-table {
+                display: block !important;
+                width: 100% !important;
+            }
+            
+            .rating-table tbody,
+            .rating-table tr {
+                display: block !important;
+                width: 100% !important;
+            }
+            
+            /* Make rating cells wrap */
+            .rating-cell {
+                display: inline-block !important;
+                width: 18% !important; /* 5 cells per row (18% × 5 = 90% + margins) */
+                min-width: 48px !important; /* WCAG 2.5.8 - minimum 44px, using 48px for safety */
+                height: 48px !important;
+                margin: 2px 1% !important;
+                border: 2pt solid #ffffff !important;
+                vertical-align: top !important;
+            }
+            
+            .rating-link {
+                line-height: 48px !important;
+                min-height: 48px !important;
+                font-size: 11pt !important;
+            }
+            
+            /* Adjust scale labels for mobile */
+            .scale-labels-table {
+                display: block !important;
+            }
+            
+            .scale-labels-table td {
+                display: block !important;
+                width: 100% !important;
+                text-align: center !important;
+                padding: 5px 0 !important;
+            }
+            
+            /* Remove min-width constraints */
+            td[width] {
+                width: auto !important;
+            }
+        }
+        
+        /* Extra small devices - 320px compliance */
+        @media only screen and (max-width: 360px) {
+            .rating-cell {
+                width: 17% !important; /* Slightly smaller to fit 5 per row */
+                min-width: 44px !important;
+                height: 44px !important;
+                font-size: 10pt !important;
+            }
+            
+            .rating-link {
+                line-height: 44px !important;
+                min-height: 44px !important;
+                font-size: 10pt !important;
+            }
+        }
+        
+        /* Prevent horizontal scroll - CRITICAL for WCAG 1.4.10 */
+        @media only screen and (max-width: 320px) {
+            body {
+                overflow-x: hidden !important;
+            }
+            
+            .email-container,
+            .email-container table {
+                min-width: 0 !important;
+                width: 100% !important;
+            }
+            
+            /* Stack rating cells 4 per row on smallest screens */
+            .rating-cell {
+                width: 22% !important; /* 4 cells per row */
+                min-width: 44px !important;
+                height: 44px !important;
+                margin: 2px 1.5% !important;
+            }
+            
+            .rating-link {
+                font-size: 9.5pt !important;
+                line-height: 44px !important;
+            }
+            
+            /* Reduce padding on smallest screens */
+            .mobile-padding {
+                padding-left: 8px !important;
+                padding-right: 8px !important;
             }
         }
     </style>
@@ -165,25 +279,25 @@
                 <td align="center" style="padding: 0;">
                     
                     <!-- 600px Container -->
-                    <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="600" class="container" style="width: 600px; max-width: 600px;">
+                    <table role="presentation" border="0" cellpadding="0" cellspacing="0" class="container" style="max-width: 600px; ">
                         <tr>
                             <td style="padding: 0;">
                                 
                                 <!-- HEADER SECTION: Logo -->
-                                <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%">
+                                <table role="banner" border="0" cellpadding="0" cellspacing="0" width="100%">
                                     <tr>
                                         <td align="center" style="padding: 0;">
                                             <!--[if mso | IE]>
-                                            <table role="presentation" align="center" border="0" cellpadding="0" cellspacing="0" style="width:600px;">
+                                            <table role="presentation" align="center" border="0" cellpadding="0" cellspacing="0" style="max-width:600px;">
                                                 <tr>
                                                     <td align="center" style="padding:0;">
                                             <![endif]-->
                                             
-                                            <div style="width: 600px; max-width: 600px; overflow: hidden;">
+                                            <div style="max-width: 600px; overflow: hidden;">
                                                 <img src="https://prudentialfinancial.qualtrics.com/CP/Graphic.php?IM=IM_wZhHc2EWuSBle3P" 
                                                      alt="Prudential Financial Logo" 
-                                                     width="600" 
-                                                     height="144" 
+                                                     width="100%" 
+                                                     max-height="144px" 
                                                      style="display: block; border: 0; width: 100%; max-width: 600px; height: auto; -ms-interpolation-mode: bicubic;" />
                                             </div>
                                             
@@ -202,7 +316,7 @@
                                         <td style="padding: 0;">
                                             
                                             <!-- Greeting and Introduction -->
-                                            <table role="contentinfo" border="0" cellpadding="0" cellspacing="0" width="100%">
+                                            <table role="complementary" border="0" cellpadding="0" cellspacing="0" width="100%">
                                                 <tr>
                                                     <td class="mobile-padding" style="padding: 7.5pt 15pt;">
                                                         
@@ -526,7 +640,7 @@
                                             </table>
                                             
                                             <!-- FOOTER SECTION -->
-                                            <table role="complementary" border="0" cellpadding="0" cellspacing="0" width="100%">
+                                            <table role="contentinfo" border="0" cellpadding="0" cellspacing="0" width="100%">
                                                 <tr>
                                                     <td class="mobile-padding" style="padding: 15pt; border-top: 1pt solid #000000;">
                                                         
