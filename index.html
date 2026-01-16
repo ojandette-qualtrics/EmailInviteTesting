@@ -127,6 +127,16 @@
             max-width: 600px !important;
         }
         
+        /* Mobile label column - hidden on desktop */
+        .mobile-label-column {
+            display: none !important;
+        }
+        
+        /* Desktop labels - visible by default */
+        .desktop-labels {
+            display: block !important;
+        }
+        
         /* REFLOW COMPLIANCE - WCAG 1.4.10 */
         /* Mobile devices and narrow viewports */
         @media only screen and (max-width: 600px) {
@@ -159,10 +169,38 @@
             }
         }
         
-        /* CRITICAL: Reflow for 320px viewport - WCAG 1.4.10 */
+        /* CRITICAL: Two-column mobile layout for 320px-480px - WCAG 1.4.10 */
         @media only screen and (max-width: 480px) {
             
-            /* Stack rating scale into two rows */
+            /* Hide desktop labels */
+            .desktop-labels {
+                display: none !important;
+            }
+            
+            /* Create two-column wrapper */
+            .mobile-two-column-wrapper {
+                display: table !important;
+                width: 100% !important;
+                table-layout: fixed !important;
+            }
+            
+            /* Left column: 65% width for rating buttons */
+            .mobile-rating-column {
+                display: table-cell !important;
+                width: 65% !important;
+                vertical-align: top !important;
+                padding-right: 8px !important;
+            }
+            
+            /* Right column: 35% width for labels */
+            .mobile-label-column {
+                display: table-cell !important;
+                width: 35% !important;
+                vertical-align: top !important;
+                padding-left: 8px !important;
+            }
+            
+            /* Stack rating scale vertically in left column */
             .rating-table-wrapper {
                 overflow-x: visible !important;
             }
@@ -178,13 +216,13 @@
                 width: 100% !important;
             }
             
-            /* Make rating cells wrap */
+            /* Full-width rating cells stacked vertically */
             .rating-cell {
-                display: inline-block !important;
-                width: 18% !important; /* 5 cells per row (18% × 5 = 90% + margins) */
-                min-width: 48px !important; /* WCAG 2.5.8 - minimum 44px, using 48px for safety */
+                display: block !important;
+                width: 100% !important;
+                min-width: 0 !important;
                 height: 48px !important;
-                margin: 2px 1% !important;
+                margin: 0 0 4px 0 !important;
                 border: 2pt solid #ffffff !important;
                 vertical-align: top !important;
             }
@@ -195,37 +233,47 @@
                 font-size: 11pt !important;
             }
             
-            /* Adjust scale labels for mobile */
-            .scale-labels-table {
+            /* Label styling for mobile */
+            .mobile-label {
+                font-family: Arial, Helvetica, sans-serif !important;
+                font-size: 10pt !important;
+                color: #001f45 !important;
+                line-height: 48px !important;
+                margin: 0 0 4px 0 !important;
+                padding: 0 !important;
+                min-height: 48px !important;
                 display: block !important;
             }
             
-            .scale-labels-table td {
+            /* Spacer labels (1-9) */
+            .mobile-label-spacer {
+                height: 48px !important;
+                margin: 0 0 4px 0 !important;
                 display: block !important;
-                width: 100% !important;
-                text-align: center !important;
-                padding: 5px 0 !important;
-            }
-            
-            /* Remove min-width constraints */
-            td[width] {
-                width: auto !important;
             }
         }
         
-        /* Extra small devices - 320px compliance */
+        /* Extra small devices - maintain two-column layout */
         @media only screen and (max-width: 360px) {
             .rating-cell {
-                width: 17% !important; /* Slightly smaller to fit 5 per row */
-                min-width: 44px !important;
                 height: 44px !important;
-                font-size: 10pt !important;
             }
             
             .rating-link {
                 line-height: 44px !important;
                 min-height: 44px !important;
                 font-size: 10pt !important;
+            }
+            
+            .mobile-label {
+                font-size: 9pt !important;
+                line-height: 44px !important;
+                min-height: 44px !important;
+            }
+            
+            .mobile-label-spacer {
+                height: 44px !important;
+                margin: 0 0 4px 0 !important;
             }
         }
         
@@ -241,17 +289,36 @@
                 width: 100% !important;
             }
             
-            /* Stack rating cells 4 per row on smallest screens */
+            /* Maintain two-column layout at 320px */
+            .mobile-rating-column {
+                width: 63% !important;
+                padding-right: 6px !important;
+            }
+            
+            .mobile-label-column {
+                width: 37% !important;
+                padding-left: 6px !important;
+            }
+            
             .rating-cell {
-                width: 22% !important; /* 4 cells per row */
-                min-width: 44px !important;
                 height: 44px !important;
-                margin: 2px 1.5% !important;
+                margin: 0 0 3px 0 !important;
             }
             
             .rating-link {
                 font-size: 9.5pt !important;
                 line-height: 44px !important;
+            }
+            
+            .mobile-label {
+                font-size: 8.5pt !important;
+                line-height: 44px !important;
+                min-height: 44px !important;
+            }
+            
+            .mobile-label-spacer {
+                height: 44px !important;
+                margin: 0 0 3px 0 !important;
             }
             
             /* Reduce padding on smallest screens */
@@ -267,7 +334,7 @@
             background-color: #f0f7ff !important; /* Subtle highlight */
         }
 
-                /* Skip to content link - for keyboard users */
+        /* Skip to content link - for keyboard users */
         .skip-link {
             position: absolute !important;
             left: -9999px !important;
@@ -413,8 +480,8 @@
                                                                     </div>
                                                         <![endif]-->
                                                         
-                                                            <!-- Scale Labels Row with IDs for aria-describedby -->
-                                                            <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%" style="margin-bottom: 10pt;">
+                                                            <!-- Desktop Scale Labels Row - Hidden on mobile -->
+                                                            <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%" class="desktop-labels" style="margin-bottom: 10pt;">
                                                                 <tr>
                                                                     <td width="50%" align="left" style="padding: 0;">
                                                                         <p id="scale-label-low" style="margin: 0; padding: 0; font-family: Arial, Helvetica, sans-serif; font-size: 12pt; color: #001f45; font-weight: normal;">
@@ -429,196 +496,220 @@
                                                                 </tr>
                                                             </table>
                                                         
-                                                            
-                                                            <!-- Rating Scale Table with proper ARIA and role -->
-                                                            <table role="main" 
-                                                                   aria-label="Select a rating to start survey in a new tab"
-                                                                   border="0" 
-                                                                   cellpadding="0" 
-                                                                   cellspacing="0" 
-                                                                   width="100%" 
-                                                                   style="background-color: #001f45; border-collapse: separate; border-spacing: 0;">
-                                                                   
-                                                                <tr>
-                                                                    <!-- Rating 0 -->
-                                                                    <td class="rating-cell" 
-                                                                        role="presentation"
-                                                                        style="background: #001f45; border: 1pt solid #ffffff; padding: 0; width: 9%; height: 30pt;">
-                                                                        <a href="${l://ChoiceLink/QID1/0}" 
-                                                                           id="first-rating"
-                                                                           aria-checked="false"
-                                                                           aria-label="Select rating 0"
-                                                                           target="_blank"
-                                                                           aria-describedby="scale-label-low"
-                                                                           title="Select rating 0"
-                                                                           class="rating-link"
-                                                                           style="display: block; color: #ffffff; font-family: 'Open Sans', Arial, sans-serif; font-size: 10.5pt; font-weight: bold; text-decoration: none; text-align: center; line-height: 30pt; padding: 0;">
-                                                                            <span aria-hidden="true">0</span>
-                                                                        </a>
-                                                                    </td>
-                                                                    
-                                                                    <!-- Rating 1 -->
-                                                                    <td class="rating-cell" 
-                                                                        role="presentation"
-                                                                        style="background: #001f45; border: 1pt solid #ffffff; border-left: 0; padding: 0; width: 9%; height: 30pt;">
-                                                                        <a href="${l://ChoiceLink/QID1/1}" 
+                                                            <!-- TWO-COLUMN MOBILE LAYOUT WRAPPER -->
+                                                            <div class="mobile-two-column-wrapper">
+                                                                
+                                                                <!-- LEFT COLUMN: Rating buttons (65% on mobile) -->
+                                                                <div class="mobile-rating-column">
+                                                                    <!-- Rating Scale Table with proper ARIA and role -->
+                                                                    <table role="main" 
+                                                                           aria-label="Select a rating to start survey in a new tab"
+                                                                           border="0" 
+                                                                           cellpadding="0" 
+                                                                           cellspacing="0" 
+                                                                           width="100%" 
+                                                                           class="rating-table"
+                                                                           style="background-color: #001f45; border-collapse: separate; border-spacing: 0;">
                                                                            
-                                                                           aria-checked="false"
-                                                                           aria-label="1"
-                                                                           target="_blank"
-                                                                           title="Select rating 1"
-                                                                           class="rating-link"
-                                                                           style="display: block; color: #ffffff; font-family: 'Open Sans', Arial, sans-serif; font-size: 10.5pt; font-weight: bold; text-decoration: none; text-align: center; line-height: 30pt; padding: 0;">
-                                                                            <span aria-hidden="true">1</span>
-                                                                        </a>
-                                                                    </td>
+                                                                        <tr>
+                                                                            <!-- Rating 0 -->
+                                                                            <td class="rating-cell" 
+                                                                                role="presentation"
+                                                                                style="background: #001f45; border: 1pt solid #ffffff; padding: 0; width: 9%; height: 30pt;">
+                                                                                <a href="${l://ChoiceLink/QID1/0}" 
+                                                                                   id="first-rating"
+                                                                                   aria-checked="false"
+                                                                                   aria-label="Select rating 0 - Not At All Likely"
+                                                                                   target="_blank"
+                                                                                   aria-describedby="scale-label-low"
+                                                                                   title="Select rating 0 - Not At All Likely"
+                                                                                   class="rating-link"
+                                                                                   style="display: block; color: #ffffff; font-family: 'Open Sans', Arial, sans-serif; font-size: 10.5pt; font-weight: bold; text-decoration: none; text-align: center; line-height: 30pt; padding: 0;">
+                                                                                    <span aria-hidden="true">0</span>
+                                                                                </a>
+                                                                            </td>
+                                                                            
+                                                                            <!-- Rating 1 -->
+                                                                            <td class="rating-cell" 
+                                                                                role="presentation"
+                                                                                style="background: #001f45; border: 1pt solid #ffffff; border-left: 0; padding: 0; width: 9%; height: 30pt;">
+                                                                                <a href="${l://ChoiceLink/QID1/1}" 
+                                                                                   aria-checked="false"
+                                                                                   aria-label="Select rating 1"
+                                                                                   target="_blank"
+                                                                                   title="Select rating 1"
+                                                                                   class="rating-link"
+                                                                                   style="display: block; color: #ffffff; font-family: 'Open Sans', Arial, sans-serif; font-size: 10.5pt; font-weight: bold; text-decoration: none; text-align: center; line-height: 30pt; padding: 0;">
+                                                                                    <span aria-hidden="true">1</span>
+                                                                                </a>
+                                                                            </td>
+                                                                            
+                                                                            <!-- Rating 2 -->
+                                                                            <td class="rating-cell" 
+                                                                                role="presentation"
+                                                                                style="background: #001f45; border: 1pt solid #ffffff; border-left: 0; padding: 0; width: 9%; height: 30pt;">
+                                                                                <a href="${l://ChoiceLink/QID1/2}" 
+                                                                                   aria-checked="false"
+                                                                                   aria-label="Select rating 2"
+                                                                                   target="_blank"
+                                                                                   title="Select rating 2"
+                                                                                   class="rating-link"
+                                                                                   style="display: block; color: #ffffff; font-family: 'Open Sans', Arial, sans-serif; font-size: 10.5pt; font-weight: bold; text-decoration: none; text-align: center; line-height: 30pt; padding: 0;">
+                                                                                    <span aria-hidden="true">2</span>
+                                                                                </a>
+                                                                            </td>
+                                                                            
+                                                                            <!-- Rating 3 -->
+                                                                            <td class="rating-cell" 
+                                                                                role="presentation"
+                                                                                style="background: #001f45; border: 1pt solid #ffffff; border-left: 0; padding: 0; width: 9%; height: 30pt;">
+                                                                                <a href="${l://ChoiceLink/QID1/3}" 
+                                                                                   aria-checked="false"
+                                                                                   aria-label="Select rating 3"
+                                                                                   target="_blank"
+                                                                                   title="Select rating 3"
+                                                                                   class="rating-link"
+                                                                                   style="display: block; color: #ffffff; font-family: 'Open Sans', Arial, sans-serif; font-size: 10.5pt; font-weight: bold; text-decoration: none; text-align: center; line-height: 30pt; padding: 0;">
+                                                                                    <span aria-hidden="true">3</span>
+                                                                                </a>
+                                                                            </td>
+                                                                            
+                                                                            <!-- Rating 4 -->
+                                                                            <td class="rating-cell" 
+                                                                                role="presentation"
+                                                                                style="background: #001f45; border: 1pt solid #ffffff; border-left: 0; padding: 0; width: 9%; height: 30pt;">
+                                                                                <a href="${l://ChoiceLink/QID1/4}" 
+                                                                                   aria-checked="false"
+                                                                                   aria-label="Select rating 4"
+                                                                                   target="_blank"
+                                                                                   title="Select rating 4"
+                                                                                   class="rating-link"
+                                                                                   style="display: block; color: #ffffff; font-family: 'Open Sans', Arial, sans-serif; font-size: 10.5pt; font-weight: bold; text-decoration: none; text-align: center; line-height: 30pt; padding: 0;">
+                                                                                    <span aria-hidden="true">4</span>
+                                                                                </a>
+                                                                            </td>
+                                                                            
+                                                                            <!-- Rating 5 -->
+                                                                            <td class="rating-cell" 
+                                                                                role="presentation"
+                                                                                style="background: #001f45; border: 1pt solid #ffffff; border-left: 0; padding: 0; width: 9%; height: 30pt;">
+                                                                                <a href="${l://ChoiceLink/QID1/5}" 
+                                                                                   aria-checked="false"
+                                                                                   aria-label="Select rating 5 - Neutral"
+                                                                                   target="_blank"
+                                                                                   title="Select rating 5 - Neutral"
+                                                                                   class="rating-link"
+                                                                                   style="display: block; color: #ffffff; font-family: 'Open Sans', Arial, sans-serif; font-size: 10.5pt; font-weight: bold; text-decoration: none; text-align: center; line-height: 30pt; padding: 0;">
+                                                                                    <span aria-hidden="true">5</span>
+                                                                                </a>
+                                                                            </td>
+                                                                            
+                                                                            <!-- Rating 6 -->
+                                                                            <td class="rating-cell" 
+                                                                                role="presentation"
+                                                                                style="background: #001f45; border: 1pt solid #ffffff; border-left: 0; padding: 0; width: 9%; height: 30pt;">
+                                                                                <a href="${l://ChoiceLink/QID1/6}" 
+                                                                                   aria-checked="false"
+                                                                                   aria-label="Select rating 6"
+                                                                                   target="_blank"
+                                                                                   title="Select rating 6"
+                                                                                   class="rating-link"
+                                                                                   style="display: block; color: #ffffff; font-family: 'Open Sans', Arial, sans-serif; font-size: 10.5pt; font-weight: bold; text-decoration: none; text-align: center; line-height: 30pt; padding: 0;">
+                                                                                    <span aria-hidden="true">6</span>
+                                                                                </a>
+                                                                            </td>
+                                                                            
+                                                                            <!-- Rating 7 -->
+                                                                            <td class="rating-cell" 
+                                                                                role="presentation"
+                                                                                style="background: #001f45; border: 1pt solid #ffffff; border-left: 0; padding: 0; width: 9%; height: 30pt;">
+                                                                                <a href="${l://ChoiceLink/QID1/7}" 
+                                                                                   aria-checked="false"
+                                                                                   aria-label="Select rating 7"
+                                                                                   target="_blank"
+                                                                                   title="Select rating 7"
+                                                                                   class="rating-link"
+                                                                                   style="display: block; color: #ffffff; font-family: 'Open Sans', Arial, sans-serif; font-size: 10.5pt; font-weight: bold; text-decoration: none; text-align: center; line-height: 30pt; padding: 0;">
+                                                                                    <span aria-hidden="true">7</span>
+                                                                                </a>
+                                                                            </td>
+                                                                            
+                                                                            <!-- Rating 8 -->
+                                                                            <td class="rating-cell" 
+                                                                                role="presentation"
+                                                                                style="background: #001f45; border: 1pt solid #ffffff; border-left: 0; padding: 0; width: 9%; height: 30pt;">
+                                                                                <a href="${l://ChoiceLink/QID1/8}" 
+                                                                                   aria-checked="false"
+                                                                                   aria-label="Select rating 8"
+                                                                                   target="_blank"
+                                                                                   title="Select rating 8"
+                                                                                   class="rating-link"
+                                                                                   style="display: block; color: #ffffff; font-family: 'Open Sans', Arial, sans-serif; font-size: 10.5pt; font-weight: bold; text-decoration: none; text-align: center; line-height: 30pt; padding: 0;">
+                                                                                    <span aria-hidden="true">8</span>
+                                                                                </a>
+                                                                            </td>
+                                                                            
+                                                                            <!-- Rating 9 -->
+                                                                            <td class="rating-cell" 
+                                                                                role="presentation"
+                                                                                style="background: #001f45; border: 1pt solid #ffffff; border-left: 0; padding: 0; width: 9%; height: 30pt;">
+                                                                                <a href="${l://ChoiceLink/QID1/9}" 
+                                                                                   aria-checked="false"
+                                                                                   aria-label="Select rating 9"
+                                                                                   target="_blank"
+                                                                                   title="Select rating 9"
+                                                                                   class="rating-link"
+                                                                                   style="display: block; color: #ffffff; font-family: 'Open Sans', Arial, sans-serif; font-size: 10.5pt; font-weight: bold; text-decoration: none; text-align: center; line-height: 30pt; padding: 0;">
+                                                                                    <span aria-hidden="true">9</span>
+                                                                                </a>
+                                                                            </td>
+                                                                            
+                                                                            <!-- Rating 10 -->
+                                                                            <td class="rating-cell" 
+                                                                                role="presentation"
+                                                                                style="background: #001f45; border: 1pt solid #ffffff; border-left: 0; padding: 0; width: 9%; height: 30pt;">
+                                                                                <a href="${l://ChoiceLink/QID1/10}" 
+                                                                                   aria-checked="false"
+                                                                                   aria-label="Select rating 10 - Extremely Likely"
+                                                                                   target="_blank"
+                                                                                   aria-describedby="scale-label-high"
+                                                                                   title="Select rating 10 - Extremely Likely"
+                                                                                   class="rating-link"
+                                                                                   style="display: block; color: #ffffff; font-family: 'Open Sans', Arial, sans-serif; font-size: 10.5pt; font-weight: bold; text-decoration: none; text-align: center; line-height: 30pt; padding: 0;">
+                                                                                    <span aria-hidden="true">10</span>
+                                                                                </a>
+                                                                            </td>
+                                                                        </tr>
+                                                                    </table>
+                                                                </div>
+                                                                
+                                                                <!-- RIGHT COLUMN: Labels (35% on mobile) - Hidden on desktop -->
+                                                                <div class="mobile-label-column">
+                                                                    <!-- Label for 0 -->
+                                                                    <p class="mobile-label" style="font-weight: normal;">
+                                                                        Not At All Likely
+                                                                    </p>
                                                                     
-                                                                    <!-- Rating 2 -->
-                                                                    <td class="rating-cell" 
-                                                                        role="presentation"
-                                                                        style="background: #001f45; border: 1pt solid #ffffff; border-left: 0; padding: 0; width: 9%; height: 30pt;">
-                                                                        <a href="${l://ChoiceLink/QID1/2}" 
-                                                                           
-                                                                           aria-checked="false"
-                                                                           aria-label="2"
-                                                                           target="_blank"
-                                                                           title="Select rating 2"
-                                                                           class="rating-link"
-                                                                           style="display: block; color: #ffffff; font-family: 'Open Sans', Arial, sans-serif; font-size: 10.5pt; font-weight: bold; text-decoration: none; text-align: center; line-height: 30pt; padding: 0;">
-                                                                            <span aria-hidden="true">2</span>
-                                                                        </a>
-                                                                    </td>
+                                                                    <!-- Spacers for 1-9 (empty but maintain alignment) -->
+                                                                    <div class="mobile-label-spacer">&nbsp;</div>
+                                                                    <div class="mobile-label-spacer">&nbsp;</div>
+                                                                    <div class="mobile-label-spacer">&nbsp;</div>
+                                                                    <div class="mobile-label-spacer">&nbsp;</div>
+                                                                    <div class="mobile-label-spacer">&nbsp;</div>
+                                                                    <div class="mobile-label-spacer">&nbsp;</div>
+                                                                    <div class="mobile-label-spacer">&nbsp;</div>
+                                                                    <div class="mobile-label-spacer">&nbsp;</div>
+                                                                    <div class="mobile-label-spacer">&nbsp;</div>
+                                                                    <div class="mobile-label-spacer">&nbsp;</div>
                                                                     
-                                                                    <!-- Rating 3 -->
-                                                                    <td class="rating-cell" 
-                                                                        role="presentation"
-                                                                        style="background: #001f45; border: 1pt solid #ffffff; border-left: 0; padding: 0; width: 9%; height: 30pt;">
-                                                                        <a href="${l://ChoiceLink/QID1/3}" 
-                                                                           
-                                                                           aria-checked="false"
-                                                                           aria-label="3"
-                                                                           target="_blank"
-                                                                           title="Select rating 3"
-                                                                           class="rating-link"
-                                                                           style="display: block; color: #ffffff; font-family: 'Open Sans', Arial, sans-serif; font-size: 10.5pt; font-weight: bold; text-decoration: none; text-align: center; line-height: 30pt; padding: 0;">
-                                                                            <span aria-hidden="true">3</span>
-                                                                        </a>
-                                                                    </td>
-                                                                    
-                                                                    <!-- Rating 4 -->
-                                                                    <td class="rating-cell" 
-                                                                        role="presentation"
-                                                                        style="background: #001f45; border: 1pt solid #ffffff; border-left: 0; padding: 0; width: 9%; height: 30pt;">
-                                                                        <a href="${l://ChoiceLink/QID1/4}" 
-                                                                           
-                                                                           aria-checked="false"
-                                                                           aria-label="4"
-                                                                           target="_blank"
-                                                                           title="Select rating 4"
-                                                                           class="rating-link"
-                                                                           style="display: block; color: #ffffff; font-family: 'Open Sans', Arial, sans-serif; font-size: 10.5pt; font-weight: bold; text-decoration: none; text-align: center; line-height: 30pt; padding: 0;">
-                                                                            <span aria-hidden="true">4</span>
-                                                                        </a>
-                                                                    </td>
-                                                                    
-                                                                    <!-- Rating 5 -->
-                                                                    <td class="rating-cell" 
-                                                                        role="presentation"
-                                                                        style="background: #001f45; border: 1pt solid #ffffff; border-left: 0; padding: 0; width: 9%; height: 30pt;">
-                                                                        <a href="${l://ChoiceLink/QID1/5}" 
-                                                                           
-                                                                           aria-checked="false"
-                                                                           aria-label="5 - Neutral"
-                                                                           target="_blank"
-                                                                           title="Select rating 5 - Neutral"
-                                                                           class="rating-link"
-                                                                           style="display: block; color: #ffffff; font-family: 'Open Sans', Arial, sans-serif; font-size: 10.5pt; font-weight: bold; text-decoration: none; text-align: center; line-height: 30pt; padding: 0;">
-                                                                            <span aria-hidden="true">5</span>
-                                                                        </a>
-                                                                    </td>
-                                                                    
-                                                                    <!-- Rating 6 -->
-                                                                    <td class="rating-cell" 
-                                                                        role="presentation"
-                                                                        style="background: #001f45; border: 1pt solid #ffffff; border-left: 0; padding: 0; width: 9%; height: 30pt;">
-                                                                        <a href="${l://ChoiceLink/QID1/6}" 
-                                                                           
-                                                                           aria-checked="false"
-                                                                           aria-label="6"
-                                                                           target="_blank"
-                                                                           title="Select rating 6"
-                                                                           class="rating-link"
-                                                                           style="display: block; color: #ffffff; font-family: 'Open Sans', Arial, sans-serif; font-size: 10.5pt; font-weight: bold; text-decoration: none; text-align: center; line-height: 30pt; padding: 0;">
-                                                                            <span aria-hidden="true">6</span>
-                                                                        </a>
-                                                                    </td>
-                                                                    
-                                                                    <!-- Rating 7 -->
-                                                                    <td class="rating-cell" 
-                                                                        role="presentation"
-                                                                        style="background: #001f45; border: 1pt solid #ffffff; border-left: 0; padding: 0; width: 9%; height: 30pt;">
-                                                                        <a href="${l://ChoiceLink/QID1/7}" 
-                                                                           
-                                                                           aria-checked="false"
-                                                                           aria-label="7"
-                                                                           target="_blank"
-                                                                           title="Select rating 7"
-                                                                           class="rating-link"
-                                                                           style="display: block; color: #ffffff; font-family: 'Open Sans', Arial, sans-serif; font-size: 10.5pt; font-weight: bold; text-decoration: none; text-align: center; line-height: 30pt; padding: 0;">
-                                                                            <span aria-hidden="true">7</span>
-                                                                        </a>
-                                                                    </td>
-                                                                    
-                                                                    <!-- Rating 8 -->
-                                                                    <td class="rating-cell" 
-                                                                        role="presentation"
-                                                                        style="background: #001f45; border: 1pt solid #ffffff; border-left: 0; padding: 0; width: 9%; height: 30pt;">
-                                                                        <a href="${l://ChoiceLink/QID1/8}" 
-                                                                           
-                                                                           aria-checked="false"
-                                                                           aria-label="8"
-                                                                           target="_blank"
-                                                                           title="Select rating 8"
-                                                                           class="rating-link"
-                                                                           style="display: block; color: #ffffff; font-family: 'Open Sans', Arial, sans-serif; font-size: 10.5pt; font-weight: bold; text-decoration: none; text-align: center; line-height: 30pt; padding: 0;">
-                                                                            <span aria-hidden="true">8</span>
-                                                                        </a>
-                                                                    </td>
-                                                                    
-                                                                    <!-- Rating 9 -->
-                                                                    <td class="rating-cell" 
-                                                                        role="presentation"
-                                                                        style="background: #001f45; border: 1pt solid #ffffff; border-left: 0; padding: 0; width: 9%; height: 30pt;">
-                                                                        <a href="${l://ChoiceLink/QID1/9}" 
-                                                                           
-                                                                           aria-checked="false"
-                                                                           aria-label="9"
-                                                                           target="_blank"
-                                                                           title="Select rating 9"
-                                                                           class="rating-link"
-                                                                           style="display: block; color: #ffffff; font-family: 'Open Sans', Arial, sans-serif; font-size: 10.5pt; font-weight: bold; text-decoration: none; text-align: center; line-height: 30pt; padding: 0;">
-                                                                            <span aria-hidden="true">9</span>
-                                                                        </a>
-                                                                    </td>
-                                                                    
-                                                                    <!-- Rating 10 -->
-                                                                    <td class="rating-cell" 
-                                                                        role="presentation"
-                                                                        style="background: #001f45; border: 1pt solid #ffffff; border-left: 0; padding: 0; width: 9%; height: 30pt;">
-                                                                        <a href="${l://ChoiceLink/QID1/10}" 
-                                                                           
-                                                                           aria-checked="false"
-                                                                           aria-label="Select rating 10"
-                                                                           target="_blank"
-                                                                           aria-describedby="scale-label-high"
-                                                                           title="Select rating 10"
-                                                                           class="rating-link"
-                                                                           style="display: block; color: #ffffff; font-family: 'Open Sans', Arial, sans-serif; font-size: 10.5pt; font-weight: bold; text-decoration: none; text-align: center; line-height: 30pt; padding: 0;">
-                                                                            <span aria-hidden="true">10</span>
-                                                                        </a>
-                                                                    </td>
-                                                                </tr>
-                                                            </table>
+                                                                    <!-- Label for 10 -->
+                                                                    <p class="mobile-label" style="font-weight: normal;">
+                                                                        Extremely Likely
+                                                                    </p>
+                                                                </div>
+                                                                
+                                                            </div>
+                                                            <!-- End two-column wrapper -->
                                                         
                                                         <!--[if !mso]><!-->
                                                         </fieldset>
@@ -667,16 +758,16 @@
                                                 <tr>
                                                     <td class="mobile-padding" style="padding: 15pt; border-top: 1pt solid #000000;">
                                                         
-                                                        <div style="font-family: Arial, Helvetica, sans-serif; font-size: 9pt; color: #002247; line-height: 1.5; text-align: justify;">
+                                                        <div style="font-family: Arial, Helvetica, sans-serif; font-size: 9pt; color: #002247; line-height: 1.5; text-align: left;">
                                                             
                                                             <p style="margin: 0 0 10pt 0;">
                                                                 If you do not wish to receive future survey invitations from Prudential, 
                                                                 <a href="${l://OptOutLink}" 
-                                                                   title="unsubscribe here - opens in new tab"
+                                                                   title="unsubscribe - opens in new tab"
                                                                    target="_blank"
                                                                    aria-label="unsubscribe here - opens in new tab"
                                                                    style="color: #0066cc; text-decoration: underline;">
-                                                                    unsubscribe here
+                                                                    Unsubscribe
                                                                 </a>.
                                                             </p>
                                                             
