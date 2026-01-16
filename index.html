@@ -333,38 +333,10 @@
             outline-offset: 2px !important;
             background-color: #f0f7ff !important; /* Subtle highlight */
         }
-
-        /* Skip to content link - for keyboard users */
-        .skip-link {
-            position: absolute !important;
-            left: -9999px !important;
-            top: auto !important;
-            width: 1px !important;
-            height: 1px !important;
-            overflow: hidden !important;
-        }
-        
-        .skip-link:focus {
-            position: static !important;
-            width: auto !important;
-            height: auto !important;
-            padding: 10px 15px !important;
-            background-color: #0066cc !important;
-            color: #ffffff !important;
-            text-decoration: none !important;
-            font-weight: bold !important;
-            z-index: 9999 !important;
-            display: block !important;
-            text-align: center !important;
-        }
     </style>
 </head>
 
 <body style="margin: 0; padding: 0; background-color: #ffffff;">
-    <!-- Skip to main content link - WCAG 2.4.1 -->
-      <!--[if !mso]><!-->              
-    <a href="#first-rating" class="skip-link">Skip to survey question</a>
-     <!--<![endif]-->
 
     <!-- Main Email Container -->
     <div role="presentation"  style="background-color: #ffffff;">
@@ -513,13 +485,13 @@
                                                                            cellspacing="0" 
                                                                            width="100%" 
                                                                            class="rating-table"
-                                                                           style="background-color: #001f45; border-collapse: separate; border-spacing: 0;">
+                                                                           style="background-color: #001f45; border-collapse: separate; border-spacing: 0;text-align: center;">
                                                                            
                                                                         <tr>
                                                                             <!-- Rating 0 -->
                                                                             <td class="rating-cell" 
                                                                                 role="presentation"
-                                                                                style="background: #001f45; border: 1pt solid #ffffff; padding: 0; width: 9%; height: 30pt;">
+                                                                                style="background: #001f45; border: 1pt solid #ffffff; padding: 0; width: 9%; height: 30pt; text-align: center;">
                                                                                 <a href="${l://ChoiceLink/QID1/0}" 
                                                                                    id="first-rating"
                                                                                    aria-checked="false"
@@ -536,7 +508,7 @@
                                                                             <!-- Rating 1 -->
                                                                             <td class="rating-cell" 
                                                                                 role="presentation"
-                                                                                style="background: #001f45; border: 1pt solid #ffffff; border-left: 0; padding: 0; width: 9%; height: 30pt;">
+                                                                                style="background: #001f45; border: 1pt solid #ffffff; border-left: 0; padding: 0; width: 9%; height: 30pt; text-align: center;">
                                                                                 <a href="${l://ChoiceLink/QID1/1}" 
                                                                                    aria-checked="false"
                                                                                    aria-label="Select rating 1"
@@ -551,7 +523,7 @@
                                                                             <!-- Rating 2 -->
                                                                             <td class="rating-cell" 
                                                                                 role="presentation"
-                                                                                style="background: #001f45; border: 1pt solid #ffffff; border-left: 0; padding: 0; width: 9%; height: 30pt;">
+                                                                                style="background: #001f45; border: 1pt solid #ffffff; border-left: 0; padding: 0; width: 9%; height: 30pt; text-align: center;">
                                                                                 <a href="${l://ChoiceLink/QID1/2}" 
                                                                                    aria-checked="false"
                                                                                    aria-label="Select rating 2"
@@ -566,7 +538,7 @@
                                                                             <!-- Rating 3 -->
                                                                             <td class="rating-cell" 
                                                                                 role="presentation"
-                                                                                style="background: #001f45; border: 1pt solid #ffffff; border-left: 0; padding: 0; width: 9%; height: 30pt;">
+                                                                                style="background: #001f45; border: 1pt solid #ffffff; border-left: 0; padding: 0; width: 9%; height: 30pt; text-align: center;">
                                                                                 <a href="${l://ChoiceLink/QID1/3}" 
                                                                                    aria-checked="false"
                                                                                    aria-label="Select rating 3"
@@ -581,7 +553,7 @@
                                                                             <!-- Rating 4 -->
                                                                             <td class="rating-cell" 
                                                                                 role="presentation"
-                                                                                style="background: #001f45; border: 1pt solid #ffffff; border-left: 0; padding: 0; width: 9%; height: 30pt;">
+                                                                                style="background: #001f45; border: 1pt solid #ffffff; border-left: 0; padding: 0; width: 9%; height: 30pt; text-align: center;">
                                                                                 <a href="${l://ChoiceLink/QID1/4}" 
                                                                                    aria-checked="false"
                                                                                    aria-label="Select rating 4"
@@ -596,7 +568,7 @@
                                                                             <!-- Rating 5 -->
                                                                             <td class="rating-cell" 
                                                                                 role="presentation"
-                                                                                style="background: #001f45; border: 1pt solid #ffffff; border-left: 0; padding: 0; width: 9%; height: 30pt;">
+                                                                                style="background: #001f45; border: 1pt solid #ffffff; border-left: 0; padding: 0; width: 9%; height: 30pt; text-align: center;">
                                                                                 <a href="${l://ChoiceLink/QID1/5}" 
                                                                                    aria-checked="false"
                                                                                    aria-label="Select rating 5 - Neutral"
@@ -611,7 +583,7 @@
                                                                             <!-- Rating 6 -->
                                                                             <td class="rating-cell" 
                                                                                 role="presentation"
-                                                                                style="background: #001f45; border: 1pt solid #ffffff; border-left: 0; padding: 0; width: 9%; height: 30pt;">
+                                                                                style="background: #001f45; border: 1pt solid #ffffff; border-left: 0; padding: 0; width: 9%; height: 30pt; text-align: center;">
                                                                                 <a href="${l://ChoiceLink/QID1/6}" 
                                                                                    aria-checked="false"
                                                                                    aria-label="Select rating 6"
@@ -626,7 +598,7 @@
                                                                             <!-- Rating 7 -->
                                                                             <td class="rating-cell" 
                                                                                 role="presentation"
-                                                                                style="background: #001f45; border: 1pt solid #ffffff; border-left: 0; padding: 0; width: 9%; height: 30pt;">
+                                                                                style="background: #001f45; border: 1pt solid #ffffff; border-left: 0; padding: 0; width: 9%; height: 30pt; text-align: center;">
                                                                                 <a href="${l://ChoiceLink/QID1/7}" 
                                                                                    aria-checked="false"
                                                                                    aria-label="Select rating 7"
@@ -641,7 +613,7 @@
                                                                             <!-- Rating 8 -->
                                                                             <td class="rating-cell" 
                                                                                 role="presentation"
-                                                                                style="background: #001f45; border: 1pt solid #ffffff; border-left: 0; padding: 0; width: 9%; height: 30pt;">
+                                                                                style="background: #001f45; border: 1pt solid #ffffff; border-left: 0; padding: 0; width: 9%; height: 30pt; text-align: center;">
                                                                                 <a href="${l://ChoiceLink/QID1/8}" 
                                                                                    aria-checked="false"
                                                                                    aria-label="Select rating 8"
@@ -656,7 +628,7 @@
                                                                             <!-- Rating 9 -->
                                                                             <td class="rating-cell" 
                                                                                 role="presentation"
-                                                                                style="background: #001f45; border: 1pt solid #ffffff; border-left: 0; padding: 0; width: 9%; height: 30pt;">
+                                                                                style="background: #001f45; border: 1pt solid #ffffff; border-left: 0; padding: 0; width: 9%; height: 30pt; text-align: center;">
                                                                                 <a href="${l://ChoiceLink/QID1/9}" 
                                                                                    aria-checked="false"
                                                                                    aria-label="Select rating 9"
@@ -671,7 +643,7 @@
                                                                             <!-- Rating 10 -->
                                                                             <td class="rating-cell" 
                                                                                 role="presentation"
-                                                                                style="background: #001f45; border: 1pt solid #ffffff; border-left: 0; padding: 0; width: 9%; height: 30pt;">
+                                                                                style="background: #001f45; border: 1pt solid #ffffff; border-left: 0; padding: 0; width: 9%; height: 30pt; text-align: center;">
                                                                                 <a href="${l://ChoiceLink/QID1/10}" 
                                                                                    aria-checked="false"
                                                                                    aria-label="Select rating 10 - Extremely Likely"
@@ -826,9 +798,19 @@
     </div>
     
     <!-- Screen reader end marker - WCAG 1.3.1 -->
-    <div class="sr-only" role="contentinfo">
+ <!--[if !mso]><!-->
+    <div class="sr-only" 
+         role="contentinfo"
+         style="position: absolute !important; width: 1px !important; height: 1px !important; padding: 0 !important; margin: -1px !important; overflow: hidden !important; clip: rect(0, 0, 0, 0) !important; white-space: nowrap !important; border: 0 !important;">
         End of email message from Prudential Financial
     </div>
+    <!--<![endif]-->
+    
+    <!--[if mso]>
+    <div style="mso-hide: all; display: none;">
+        End of email message from Prudential Financial
+    </div>
+    <![endif]-->
     
 </body>
 </html>
