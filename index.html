@@ -498,10 +498,9 @@
                                                             <div class="mobile-two-column-wrapper">
                                                                 
                                                                 <!-- LEFT COLUMN: Rating buttons (65% on mobile) -->
-                                                                <div class="mobile-rating-column">
+                                                                <div class="mobile-rating-column" role="group" aria-label="Select a rating to start survey in a new tab">
                                                                     <!-- Rating Scale Table with proper ARIA and role -->
-                                                                    <table role="main" 
-                                                                           aria-label="Select a rating to start survey in a new tab"
+                                                                    <table role="presentation" 
                                                                            border="0" 
                                                                            cellpadding="0" 
                                                                            cellspacing="0" 
@@ -512,7 +511,7 @@
                                                                         <tr>
                                                                             <!-- Rating 0 -->
                                                                             <td class="rating-cell" 
-                                                                                role="presentation"
+                                                                                role="main"
                                                                                 style="background: #001f45; border: 1pt solid #ffffff; padding: 0; width: 9%; height: 30pt; text-align: center;">
                                                                                 <a href="${l://ChoiceLink/QID1/0}" 
                                                                                    id="first-rating"
