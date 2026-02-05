@@ -311,7 +311,6 @@
         .desktop-labels td {
             font-size: 9pt !important; /* ~12px */
             line-height: 1.5 !important;
-            white-space: normal !important; /* Allow wrapping if needed */
         }
         /* More space for labels */
         .label-left-col {
@@ -365,7 +364,6 @@
         .desktop-labels td {
             font-size: 8pt !important; /* ~11.33px */
             line-height: 1.5 !important;
-            white-space: normal !important; /* Allow wrapping if needed */
         }
         
         /* Reduce padding on smallest screens */
@@ -376,7 +374,6 @@
           /* 320px: Maximum label space, minimum spacer - ALLOW WRAPPING */
         .label-left-col {
             width: 40% !important;
-            white-space: normal !important; /* Allow wrapping if needed */
             font-size: 8pt !important; /* ~11.33px */
         }
         
@@ -386,7 +383,6 @@
         
         .label-right-col {
             width: 40% !important;
-            white-space: normal !important; /* Allow wrapping if needed */
             font-size: 8pt !important; /* ~11.33px */
         }
     }
@@ -526,7 +522,7 @@
                                                                 cellspacing="0" 
                                                                 width="100%" 
                                                                 class="desktop-labels" 
-                                                                style="width: 100% !important; margin-bottom: 10pt; table-layout: fixed !important;">
+                                                                style="width: 100% !important; margin-bottom: 10pt; table-layout: fixed !important;white-space: nowrap !important; ">
                                                                 <tr>
                                                                     <!-- Column matching button 0 position -->
                                                                     <td 
@@ -534,7 +530,7 @@
                                                                         valign="top"
                                                                         style="padding: 0; text-align: left;">
                                                                         <p id="scale-label-low" 
-                                                                        style="margin: 0; padding: 0; font-family: Arial, Helvetica, sans-serif; font-size: 12pt; color: #001f45; font-weight: normal; text-align: left;">
+                                                                        style="margin: 0; padding: 0; font-family: Arial, Helvetica, sans-serif; font-size: 12pt; color: #001f45; font-weight: normal; text-align: left;white-space: nowrap !important; ">
                                                                             Not At All Likely
                                                                         </p>
                                                                     </td>
@@ -552,7 +548,7 @@
                                                                         class="label-right-col"
                                                                         style="padding: 0; text-align: right;">
                                                                         <p id="scale-label-high" 
-                                                                        style="margin: 0; padding: 0; font-family: Arial, Helvetica, sans-serif; font-size: 12pt; color: #001f45; font-weight: normal; text-align: right;">
+                                                                        style="margin: 0; padding: 0; font-family: Arial, Helvetica, sans-serif; font-size: 12pt; color: #001f45; font-weight: normal; text-align: right;white-space: nowrap !important; ">
                                                                             Extremely Likely
                                                                         </p>
                                                                     </td>
