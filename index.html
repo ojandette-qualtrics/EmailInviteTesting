@@ -143,6 +143,22 @@
     .desktop-labels {
         display: block !important;
     }
+    /*Desktop: Keep original widths and nowrap */
+    .label-left-col {
+        width: 20% !important;
+    }
+
+    .label-spacer-col {
+        width: 60% !important;
+    }
+
+    .label-right-col {
+        width: 20% !important;
+    }
+
+    .desktop-labels p {
+        white-space: nowrap !important;
+    }
     
     /* REFLOW COMPLIANCE - WCAG 1.4.10 */
     /* Mobile devices and narrow viewports */
@@ -175,6 +191,23 @@
         body {
             font-size: 14px !important; /* WCAG recommended 13-15px */
             line-height: 1.5 !important; /* WCAG 1.4.12 */
+        }
+         /* Start reducing spacer width, increase label width */
+        .label-left-col {
+            width: 30% !important;
+        }
+        
+        .label-spacer-col {
+            width: 40% !important;
+        }
+        
+        .label-right-col {
+            width: 30% !important;
+        }
+        
+        .desktop-labels p {
+            font-size: 11pt !important;
+            white-space: nowrap !important;
         }
     }
     
@@ -251,6 +284,20 @@
             width: 100% !important;
             padding: 0 !important;
         }
+
+         /* Further reduce spacer, increase label columns */
+        .label-left-col {
+            width: 35% !important;
+        }
+        
+        .label-spacer-col {
+            width: 30% !important;
+        }
+        
+        .label-right-col {
+            width: 35% !important;
+        }
+        
     }
     
     /* Extra small devices - maintain inline layout with optimized sizing */
@@ -275,6 +322,18 @@
             font-size: 9pt !important; /* ~12px */
             line-height: 1.5 !important;
             white-space: normal !important; /* Allow wrapping if needed */
+        }
+        /* More space for labels */
+        .label-left-col {
+            width: 38% !important;
+        }
+        
+        .label-spacer-col {
+            width: 24% !important;
+        }
+        
+        .label-right-col {
+            width: 38% !important;
         }
     }
     
@@ -323,6 +382,18 @@
         .mobile-padding {
             padding-left: 8px !important;
             padding-right: 8px !important;
+        }
+          /* 320px: Maximum label space, minimum spacer - ALLOW WRAPPING */
+        .label-left-col {
+            width: 40% !important;
+        }
+        
+        .label-spacer-col {
+            width: 20% !important;
+        }
+        
+        .label-right-col {
+            width: 40% !important;
         }
     }
 
@@ -465,16 +536,18 @@
                                                                 <tr>
                                                                     <!-- Column matching button 0 position -->
                                                                     <td width="20%" 
+                                                                        class="label-left-col"
                                                                         valign="top"
                                                                         style="width: 20% !important; padding: 0; text-align: left;">
                                                                         <p id="scale-label-low" 
-                                                                        style="margin: 0; padding: 0; font-family: Arial, Helvetica, sans-serif; font-size: 12pt; color: #001f45; font-weight: normal; text-align: left;">
+                                                                        style="margin: 0; padding: 0; font-family: Arial, Helvetica, sans-serif; font-size: 12pt; color: #001f45; font-weight: normal; text-align: left;white-space: nowrap;">
                                                                             Not At All Likely
                                                                         </p>
                                                                     </td>
                                                                     
                                                                     <!-- Columns 1-9 (buttons 1-9) -->
-                                                                    <td width="60%" 
+                                                                    <td width="60%"
+                                                                        class="label-spacer-col" 
                                                                         style="width: 60% !important; padding: 0;">
                                                                         
                                                                     </td>
@@ -482,9 +555,10 @@
                                                                     <!-- Column matching button 10 position -->
                                                                     <td width="20%" 
                                                                         valign="top"
+                                                                        class="label-right-col"
                                                                         style="width: 20% !important; padding: 0; text-align: right;">
                                                                         <p id="scale-label-high" 
-                                                                        style="margin: 0; padding: 0; font-family: Arial, Helvetica, sans-serif; font-size: 12pt; color: #001f45; font-weight: normal; text-align: right;">
+                                                                        style="margin: 0; padding: 0; font-family: Arial, Helvetica, sans-serif; font-size: 12pt; color: #001f45; font-weight: normal; text-align: right;white-space: nowrap;">
                                                                             Extremely Likely
                                                                         </p>
                                                                     </td>
