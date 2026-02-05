@@ -274,6 +274,7 @@
         .desktop-labels td {
             font-size: 9pt !important; /* ~12px */
             line-height: 1.5 !important;
+            white-space: normal !important; /* Allow wrapping if needed */
         }
     }
     
@@ -313,7 +314,7 @@
         }
         
         .desktop-labels td {
-            font-size: 8.5pt !important; /* ~11.33px */
+            font-size: 8pt !important; /* ~11.33px */
             line-height: 1.5 !important;
             white-space: normal !important; /* Allow wrapping if needed */
         }
@@ -460,24 +461,30 @@
                                                                 cellspacing="0" 
                                                                 width="100%" 
                                                                 class="desktop-labels" 
-                                                                style="width: 100% !important; margin-bottom: 10pt; table-layout: fixed !important; white-space: nowrap;">
+                                                                style="width: 100% !important; margin-bottom: 10pt; table-layout: fixed !important;">
                                                                 <tr>
                                                                     <!-- Column matching button 0 position -->
-                                                                    <td width="50%" 
+                                                                    <td width="20%" 
                                                                         valign="top"
-                                                                        style="width: 50% !important; padding: 0; text-align: left;">
+                                                                        style="width: 20% !important; padding: 0; text-align: left;">
                                                                         <p id="scale-label-low" 
-                                                                        style="margin: 0; padding: 0; font-family: Arial, Helvetica, sans-serif; font-size: 12pt; color: #001f45; font-weight: normal; text-align: left; white-space: nowrap;">
+                                                                        style="margin: 0; padding: 0; font-family: Arial, Helvetica, sans-serif; font-size: 12pt; color: #001f45; font-weight: normal; text-align: left;">
                                                                             Not At All Likely
                                                                         </p>
                                                                     </td>
                                                                     
+                                                                    <!-- Columns 1-9 (buttons 1-9) -->
+                                                                    <td width="60%" 
+                                                                        style="width: 60% !important; padding: 0;">
+                                                                        
+                                                                    </td>
+                                                                    
                                                                     <!-- Column matching button 10 position -->
-                                                                    <td width="50%" 
+                                                                    <td width="20%" 
                                                                         valign="top"
-                                                                        style="width: 50% !important; padding: 0; text-align: right;">
+                                                                        style="width: 20% !important; padding: 0; text-align: right;">
                                                                         <p id="scale-label-high" 
-                                                                        style="margin: 0; padding: 0; font-family: Arial, Helvetica, sans-serif; font-size: 12pt; color: #001f45; font-weight: normal; text-align: right; white-space: nowrap;">
+                                                                        style="margin: 0; padding: 0; font-family: Arial, Helvetica, sans-serif; font-size: 12pt; color: #001f45; font-weight: normal; text-align: right;">
                                                                             Extremely Likely
                                                                         </p>
                                                                     </td>
